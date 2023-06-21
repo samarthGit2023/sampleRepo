@@ -11,6 +11,26 @@ void dfs1(vector<int> v[], int visited[], int node){
     }
 }
 
+void bfs(vector<int> v[], int visited[], int curr, queue<int> &q){
+    if(visited[curr]==1){
+        return;
+    }
+    cout<<curr<<" ";
+    q.push(curr);
+    for(int j=0 ; j<v[curr].size() ; j++){
+        if(visited[v[curr][j]]==1){
+            continue;
+        }
+        q.push(v[curr][j]);
+    }
+    q.pop();
+    if(q.size()==0){
+        return;
+    }
+    curr=q.front();
+    bfs(v, visited, curr, q);
+}
+
 void dfs_tree(vector<int> v[], int node, int parent, int depth[], int height[]){
     for(int child : v[node]){
         if(child==parent){
